@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+curl -G https://api.twilio.com/2010-04-01/Accounts/$(pass twilio/account-sid)/Messages.json \
+     -u "$(pass twilio/account-sid):$(pass twilio/auth-token)" \
+  | jq ".messages[] | {date_sent,to,from,body}"

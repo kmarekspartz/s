@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# s 15555555555 "Hey!"
+
+DESTINATION=$1
+BODY=$2
+
+curl -XPOST https://api.twilio.com/2010-04-01/Accounts/$(pass twilio/account-sid)/Messages.json \
+    -d "Body=${BODY}" \
+    -d "To=%2B${DESTINATION}" \
+    -d "From=%2B$(pass twilio/phone-number)" \
+    -u "$(pass twilio/account-sid):$(pass twilio/auth-token)" \
+  | jq "{date_created,to,from,body}"
