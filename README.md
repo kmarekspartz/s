@@ -2,7 +2,6 @@
 
 Send and receive SMS from the command line
 
-
 ~~~ bash
 s 15555555555 "Hey!"
 
@@ -15,8 +14,17 @@ for number in $(cat phone-numbers); do
 end
 ~~~
 
+
 ## Dependencies
 
 - [`curl`](http://curl.haxx.se/)
 - [`pass`](http://www.passwordstore.org/)
 - [`jq`](https://stedolan.github.io/jq/)
+
+## Configuration
+
+~~~ bash
+pass insert twilio/account-sid
+pass insert twilio/auth-token
+pass insert twilio/phone-number
+~~~
