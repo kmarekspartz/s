@@ -12,6 +12,8 @@ watch -n 60 s-list
 for number in $(cat phone-numbers); do
   s ${number} "Have you heard about s?"
 end
+
+s-read
 ~~~
 
 
