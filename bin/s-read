@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+PASS_TWILIO_PREFIX=${PASS_TWILIO_PREFIX:-''}
+
+TWILIO_ACCOUNT_SID=$(pass ${PASS_TWILIO_PREFIX}twilio/account-sid)
+TWILIO_AUTH_TOKEN=$(pass ${PASS_TWILIO_PREFIX}twilio/auth-token)
+
+curl -G https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json \
+     -u "${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}" \
+  | jq ".messages[0] | {date_sent,to,from,body}"
